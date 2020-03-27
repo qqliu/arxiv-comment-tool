@@ -1,3 +1,5 @@
+#author: Quanquan C. Liu
+
 import argparse, re, os
 
 ADDITIONAL_IF = ['\iffalse']
