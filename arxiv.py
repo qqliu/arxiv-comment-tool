@@ -10,11 +10,12 @@ removing = False
 removing_command = False
 
 def removeComments(s):
-    news = re.sub(re.compile("%.*?\n"), "\n", s)
+    news = re.sub(re.compile("%.*?\n"), "", s)
+    num_comments = s.split("%")
 
-    if "%" in s and len(news) > 1:
-        news += "\n"
-    elif "%" in s and len(news) <= 1:
+    if "%" in s and num_comments[0].strip() != "":
+        return re.sub(re.compile("%.*?\n"), "\n", s)
+    elif "%" in s and num_comments[0].strip() == "":
         return ""
     return news
 
