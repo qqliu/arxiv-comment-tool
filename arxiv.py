@@ -40,12 +40,19 @@ def removeCommentTags(line, tags):
 
 def remove_command(line, command):
     global removing_command
-    r = line.split(command)
-    for i in range(1, len(r)):
-        for j in range(len(r[i])):
-            if r[i][j] == "}":
+    if command == "":
+        r = line
+        for i in range(len(r)):
+            if r[i] == "}":
                 removing_command = False
-                return r[i][j+1:len(r[i])] + ''.join(r[i+1:len(r)])
+                return r[i+1:len(r)]
+    else:
+        r = line.split(command)
+        for i in range(1, len(r)):
+            for j in range(len(r[i])):
+                if r[i][j] == "}":
+                    removing_command = False
+                    return r[i][j+1:len(r[i])] + ''.join(r[i+1:len(r)])
     return ""
 
 def removeCommands(line, commands):
